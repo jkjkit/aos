@@ -1,0 +1,315 @@
+{
+  "principles": [
+    "先按用户要求的最终交付物匹配，不要只按主题词或用户使用的动词匹配。",
+    "优先选择职责更具体的 Skill；只有没有专用 Skill 时才选择通用 Skill。",
+    "区分探索现状、分析变更影响、设计、实现、测试设计、审查和交付验证；多阶段任务应使用 Workflow。",
+    "对比候选 Skill 的“选择条件”和“不要选择”；仍无法判断时再读取候选 SKILL.md，只有交付物确实不明确时才询问用户。"
+  ],
+  "groups": [
+    {
+      "name": "需求、设计与实现",
+      "rule": "主题相同不代表 Skill 相同，按用户现在要得到的交付物选择。",
+      "skills": [
+        {
+          "name": "grill",
+          "choose_when": "只需要追问、澄清前提和暴露盲点",
+          "avoid_when": "需要产出正式需求、方案或代码"
+        },
+        {
+          "name": "requirement",
+          "choose_when": "需要范围、用户故事、业务规则或验收标准",
+          "avoid_when": "需求已经明确，当前要技术方案或代码"
+        },
+        {
+          "name": "codebase-exploration",
+          "choose_when": "需要理解现有代码库的结构、入口、模块、调用链和任务相关文件",
+          "avoid_when": "需要外部调研、拟议变更的影响矩阵、目标方案或实际代码"
+        },
+        {
+          "name": "change-impact-analysis",
+          "choose_when": "修改前需要识别调用方、依赖、契约、数据、测试和发布影响",
+          "avoid_when": "只需理解代码库、审查已完成 diff、做广义风险评估或设计方案"
+        },
+        {
+          "name": "design",
+          "choose_when": "需要系统架构、组件边界、技术选型或关键技术流程",
+          "avoid_when": "需要界面视觉、API 细节、数据库细节或实际代码"
+        },
+        {
+          "name": "design-interface",
+          "choose_when": "需要页面或组件的交互流程、布局和视觉规范",
+          "avoid_when": "需要系统架构或实际前端代码"
+        },
+        {
+          "name": "api-design",
+          "choose_when": "需要端点、字段、错误码、鉴权和版本契约",
+          "avoid_when": "需要系统总体架构或 API 调用实现"
+        },
+        {
+          "name": "database",
+          "choose_when": "需要 Schema、Migration、索引或查询方案",
+          "avoid_when": "需要系统总体架构或业务代码"
+        },
+        {
+          "name": "coding",
+          "choose_when": "需要新增或修改实际源代码并执行自检",
+          "avoid_when": "当前只需要需求、探索报告、影响分析、方案、设计稿、审查报告、交付验证或 AOS Skill 定义"
+        },
+        {
+          "name": "task",
+          "choose_when": "目标和方案已确定，需要拆成执行任务",
+          "avoid_when": "需求或技术方向尚未确定"
+        },
+        {
+          "name": "roadmap",
+          "choose_when": "需要中长期方向、阶段、里程碑和依赖",
+          "avoid_when": "需要单个功能需求或近期执行任务"
+        }
+      ],
+      "examples": [
+        {
+          "intent": "设计登录系统的服务边界和数据流",
+          "skill": "design"
+        },
+        {
+          "intent": "设计登录页面的交互、布局和视觉规范",
+          "skill": "design-interface"
+        },
+        {
+          "intent": "把登录页面实现到现有前端项目",
+          "skill": "coding"
+        },
+        {
+          "intent": "定义登录接口的请求、响应和错误码",
+          "skill": "api-design"
+        },
+        {
+          "intent": "先梳理这个仓库的运行入口、核心模块和订单调用链",
+          "skill": "codebase-exploration"
+        },
+        {
+          "intent": "把用户 ID 改成 UUID 前，列出受影响的接口、数据和测试",
+          "skill": "change-impact-analysis"
+        }
+      ]
+    },
+    {
+      "name": "AI 系统设计与评估",
+      "rule": "按交付物区分 Prompt 正文、运行时上下文契约和可重复的质量评估体系。",
+      "skills": [
+        {
+          "name": "prompt-writing",
+          "choose_when": "需要编写或优化 system prompt、few-shot、Agent prompt、评估 Prompt 或图像 Prompt 正文",
+          "avoid_when": "需要设计运行时上下文选择与预算，或建立评估集、指标、评估器和发布门禁"
+        },
+        {
+          "name": "context-engineering",
+          "choose_when": "需要设计上下文来源、选择、排序、压缩、记忆、工具结果、信任边界和 Token 预算",
+          "avoid_when": "只需 Prompt 文案、代码库导航、通用系统架构或模型质量评估"
+        },
+        {
+          "name": "llm-evaluation",
+          "choose_when": "需要为 LLM、Prompt、RAG 或 Agent 建立评估集、Rubric、评估器、指标、基线对比和回归门禁",
+          "avoid_when": "只需编写 Prompt、设计上下文组装、做生产流量 A/B 实验或运行普通软件测试"
+        }
+      ],
+      "examples": [
+        {
+          "intent": "为分类任务写一个包含输出 Schema 和 few-shot 的 system prompt",
+          "skill": "prompt-writing"
+        },
+        {
+          "intent": "设计历史消息、检索文档和工具结果的 Token 分配与淘汰规则",
+          "skill": "context-engineering"
+        },
+        {
+          "intent": "给客服 RAG 建立离线评估集、评分标准和发布门禁",
+          "skill": "llm-evaluation"
+        }
+      ]
+    },
+    {
+      "name": "研究、分析与摘要",
+      "rule": "先区分信息来源和目标：外部证据、竞品、真实用户、业务数据或已有材料。",
+      "skills": [
+        {
+          "name": "research",
+          "choose_when": "需要查证未知问题、比较技术方案并形成结论",
+          "avoid_when": "需要理解现有代码库、完整技术设计、竞品矩阵或原文压缩"
+        },
+        {
+          "name": "competitive-analysis",
+          "choose_when": "需要比较竞品定位、能力、体验和差异化",
+          "avoid_when": "需要技术选型、用户访谈或业务数据分析"
+        },
+        {
+          "name": "user-research",
+          "choose_when": "需要访谈、问卷、可用性测试或用户洞察",
+          "avoid_when": "只有竞品资料或产品行为数据"
+        },
+        {
+          "name": "data-analysis",
+          "choose_when": "需要分析已有数据并解释趋势、原因或行动",
+          "avoid_when": "没有数据，或只需压缩现有文字"
+        },
+        {
+          "name": "summary",
+          "choose_when": "只需压缩已有文档、代码或对话",
+          "avoid_when": "需要新增判断、代码库探索、方案、调研或评价"
+        }
+      ],
+      "examples": [
+        {
+          "intent": "比较三种消息队列并推荐一个",
+          "skill": "research"
+        },
+        {
+          "intent": "比较主要竞品的定价和功能差异",
+          "skill": "competitive-analysis"
+        },
+        {
+          "intent": "分析这份留存数据为什么下降",
+          "skill": "data-analysis"
+        },
+        {
+          "intent": "把这份长文档压缩成五个要点",
+          "skill": "summary"
+        }
+      ]
+    },
+    {
+      "name": "代码质量与问题处理",
+      "rule": "按交付物区分测试设计、代码审查、专项可访问性/安全/隐私审计、故障定位、性能优化和最终交付验证。",
+      "skills": [
+        {
+          "name": "testing",
+          "choose_when": "需要测试策略、用例、边界条件或覆盖计划",
+          "avoid_when": "需要 LLM 质量评估、专项可访问性审计、审查 diff、定位线上异常或执行最终交付门禁"
+        },
+        {
+          "name": "review",
+          "choose_when": "已有代码或 diff，需要检查规范、缺陷和需求符合度",
+          "avoid_when": "需要专项可访问性、隐私或安全审计，或直接改代码、设计测试、定位根因、执行最终验证"
+        },
+        {
+          "name": "accessibility-audit",
+          "choose_when": "需要审计键盘、焦点、语义、屏幕阅读器、对比度、缩放、表单和动态内容障碍",
+          "avoid_when": "需要设计界面视觉、普通代码审查、功能测试或安全/隐私审计"
+        },
+        {
+          "name": "debug",
+          "choose_when": "已经出现错误、异常或回退，需要复现并定位根因",
+          "avoid_when": "没有具体故障，只做常规审查或测试设计"
+        },
+        {
+          "name": "security",
+          "choose_when": "需要检查攻击面、漏洞、权限或数据安全",
+          "avoid_when": "需要判断个人信息处理的必要性与生命周期，或只是普通代码质量和依赖升级"
+        },
+        {
+          "name": "privacy-review",
+          "choose_when": "需要审查个人信息分类、目的、最小化、同意、保留、删除、共享、日志和模型使用",
+          "avoid_when": "需要安全漏洞测试、广义项目风险、普通代码审查或法律结论"
+        },
+        {
+          "name": "performance",
+          "choose_when": "有性能目标或基线，需要测量瓶颈和验证优化",
+          "avoid_when": "普通功能错误、安全问题或无证据的提前优化"
+        },
+        {
+          "name": "verification",
+          "choose_when": "实现完成后需要实际运行质量门禁并按证据判断是否满足完成条件",
+          "avoid_when": "需要新建 LLM 评估体系、设计测试、审查代码、定位失败根因或修改实现"
+        }
+      ],
+      "examples": [
+        {
+          "intent": "给支付模块补一份边界测试计划",
+          "skill": "testing"
+        },
+        {
+          "intent": "审查这个 PR 是否符合需求和编码规范",
+          "skill": "review"
+        },
+        {
+          "intent": "接口偶发 500，帮我复现并找根因",
+          "skill": "debug"
+        },
+        {
+          "intent": "接口延迟从 100ms 升到 800ms，定位瓶颈",
+          "skill": "performance"
+        },
+        {
+          "intent": "实现完成后实际运行 lint、构建和测试，判断是否可以交付",
+          "skill": "verification"
+        },
+        {
+          "intent": "审计结算流程的键盘、焦点、屏幕阅读器和缩放重排问题",
+          "skill": "accessibility-audit"
+        },
+        {
+          "intent": "检查客服对话发给第三方模型时的数据最小化、保留和删除路径",
+          "skill": "privacy-review"
+        }
+      ]
+    },
+    {
+      "name": "文档、内容与能力定义",
+      "rule": "按受众、材料类型和要维护的系统对象选择，不要把所有写作任务都交给 document。",
+      "skills": [
+        {
+          "name": "document",
+          "choose_when": "需要 README、API、架构或用户指南等正式文档",
+          "avoid_when": "需要摘要、会议纪要、FAQ、版本日志、营销文案或 AOS Skill 定义"
+        },
+        {
+          "name": "skill-authoring",
+          "choose_when": "需要创建或修改 AOS Skill 及其职责边界、路由规则和回归用例",
+          "avoid_when": "需要普通技术文档、通用 Prompt、业务代码或安装已有 Skill"
+        },
+        {
+          "name": "changelog",
+          "choose_when": "需要把 Git 变更整理为面向用户的版本日志",
+          "avoid_when": "需要通用项目文档或执行 Git 操作"
+        },
+        {
+          "name": "meeting-notes",
+          "choose_when": "需要从会议材料提取决策、行动项和负责人",
+          "avoid_when": "只是通用摘要或正式项目文档"
+        },
+        {
+          "name": "faq-generation",
+          "choose_when": "需要从历史资料整理可检索的问答知识库",
+          "avoid_when": "需要即时客服回复或通用文档"
+        },
+        {
+          "name": "copywriting",
+          "choose_when": "需要营销、邮件、社媒、广告或品牌表达",
+          "avoid_when": "需要技术文档、客服标准回复或事实摘要"
+        }
+      ],
+      "examples": [
+        {
+          "intent": "为这个库补一份安装和使用 README",
+          "skill": "document"
+        },
+        {
+          "intent": "把本次版本 commits 整理成用户可读更新说明",
+          "skill": "changelog"
+        },
+        {
+          "intent": "从会议录音稿提取决策和行动项",
+          "skill": "meeting-notes"
+        },
+        {
+          "intent": "写一封新品发布营销邮件",
+          "skill": "copywriting"
+        },
+        {
+          "intent": "新增一个 AOS 能力并同步 description、岗位标签、路由和回归用例",
+          "skill": "skill-authoring"
+        }
+      ]
+    }
+  ]
+}

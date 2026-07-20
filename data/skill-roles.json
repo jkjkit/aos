@@ -1,0 +1,193 @@
+{
+  "_comment": "Skill 岗位标签。设计原则：先按'岗位职责'定义，再映射 Skill；单一岗位优先，多岗位需明确理由。",
+  "_design": "8 核心岗位：general, dev, ops, data, design, cs, product, creative。可按需扩展二级岗位。",
+  "general_skills": [
+    "grill",
+    "summary",
+    "task"
+  ],
+  "grill": [
+    "general"
+  ],
+  "summary": [
+    "general"
+  ],
+  "task": [
+    "general"
+  ],
+  "coding": [
+    "dev"
+  ],
+  "testing": [
+    "dev"
+  ],
+  "review": [
+    "dev"
+  ],
+  "debug": [
+    "dev"
+  ],
+  "refactor": [
+    "dev"
+  ],
+  "performance": [
+    "dev",
+    "ops"
+  ],
+  "security": [
+    "dev",
+    "ops"
+  ],
+  "prompt-writing": [
+    "dev"
+  ],
+  "api-integration": [
+    "dev"
+  ],
+  "design": [
+    "dev",
+    "design",
+    "product"
+  ],
+  "api-design": [
+    "dev",
+    "design"
+  ],
+  "database": [
+    "dev",
+    "ops"
+  ],
+  "design-interface": [
+    "design",
+    "dev"
+  ],
+  "git": [
+    "dev",
+    "ops"
+  ],
+  "changelog": [
+    "dev",
+    "ops"
+  ],
+  "document": [
+    "dev",
+    "design",
+    "cs"
+  ],
+  "devops": [
+    "ops"
+  ],
+  "observability": [
+    "ops"
+  ],
+  "migration": [
+    "ops"
+  ],
+  "dependency-management": [
+    "ops"
+  ],
+  "dependency-audit": [
+    "ops"
+  ],
+  "requirement": [
+    "product",
+    "design",
+    "dev"
+  ],
+  "research": [
+    "product",
+    "design",
+    "dev"
+  ],
+  "risk-analysis": [
+    "product",
+    "dev",
+    "ops"
+  ],
+  "roadmap": [
+    "product"
+  ],
+  "meeting-notes": [
+    "product",
+    "ops",
+    "cs"
+  ],
+  "copywriting": [
+    "creative",
+    "cs"
+  ],
+  "brainstorm": [
+    "creative",
+    "product"
+  ],
+  "metrics-design": [
+    "data",
+    "product"
+  ],
+  "ab-testing": [
+    "data",
+    "product"
+  ],
+  "cohort-analysis": [
+    "data",
+    "product"
+  ],
+  "support-triage": [
+    "cs"
+  ],
+  "faq-generation": [
+    "cs"
+  ],
+  "customer-recovery": [
+    "cs"
+  ],
+  "cs-response": [
+    "cs"
+  ],
+  "incident-response": [
+    "ops"
+  ],
+  "data-analysis": [
+    "data",
+    "product"
+  ],
+  "user-research": [
+    "product",
+    "design"
+  ],
+  "competitive-analysis": [
+    "product"
+  ],
+  "codebase-exploration": [
+    "dev"
+  ],
+  "change-impact-analysis": [
+    "dev",
+    "ops"
+  ],
+  "verification": [
+    "dev",
+    "ops"
+  ],
+  "skill-authoring": [
+    "dev"
+  ],
+  "llm-evaluation": [
+    "dev",
+    "data",
+    "product"
+  ],
+  "context-engineering": [
+    "dev",
+    "design"
+  ],
+  "accessibility-audit": [
+    "design",
+    "dev"
+  ],
+  "privacy-review": [
+    "dev",
+    "ops",
+    "product"
+  ]
+}

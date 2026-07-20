@@ -1,0 +1,11 @@
+﻿{
+  "version": 1,
+  "limits": {
+    "runtime_entry_bytes": 3072,
+    "default_router_bytes": 8192,
+    "default_active_skills": 35,
+    "default_description_chars": 2500,
+    "skill_md_warning_bytes": 10240,
+    "skill_md_error_bytes": 32768
+  }
+}

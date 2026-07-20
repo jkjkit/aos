@@ -1,0 +1,24 @@
+{
+  "skill": "coding",
+  "schema_version": "0.1",
+  "created_at": "2026-07-15",
+  "updated_at": "2026-07-20",
+  "stats": {
+    "total_calls": 45,
+    "first_match_count": 41,
+    "rework_count": 4
+  },
+  "ratings": {
+    "useful": 40,
+    "needs-improvement": 3,
+    "outdated": 1,
+    "mislabeled": 1
+  },
+  "feedback": [
+    {"date": "2026-07-20", "rating": "useful", "note": "步骤清晰，示例完整", "context": "用户认证模块"},
+    {"date": "2026-07-19", "rating": "useful", "note": "错误处理部分写得到位"},
+    {"date": "2026-07-18", "rating": "needs-improvement", "note": "测试部分可以更具体"},
+    {"date": "2026-07-17", "rating": "useful"},
+    {"date": "2026-07-15", "rating": "useful"}
+  ]
+}

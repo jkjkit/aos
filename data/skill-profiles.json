@@ -1,0 +1,72 @@
+﻿{
+  "version": 1,
+  "default_profile": "core",
+  "profiles": {
+    "core": {
+      "description": "日常研发与运维能力，控制默认扫描规模。",
+      "skills": [
+        "api-design",
+        "api-integration",
+        "change-impact-analysis",
+        "changelog",
+        "codebase-exploration",
+        "coding",
+        "database",
+        "debug",
+        "dependency-audit",
+        "dependency-management",
+        "design",
+        "design-interface",
+        "devops",
+        "document",
+        "git",
+        "grill",
+        "incident-response",
+        "migration",
+        "observability",
+        "performance",
+        "refactor",
+        "requirement",
+        "research",
+        "review",
+        "risk-analysis",
+        "security",
+        "skill-authoring",
+        "summary",
+        "task",
+        "testing",
+        "verification"
+      ]
+    },
+    "ai": {
+      "description": "在 core 基础上启用 Prompt、上下文工程与 LLM 评估能力。",
+      "extends": [
+        "core"
+      ],
+      "skills": [
+        "context-engineering",
+        "llm-evaluation",
+        "prompt-writing"
+      ]
+    },
+    "design": {
+      "description": "在 core 基础上启用产品研究、内容与可访问性设计能力。",
+      "extends": [
+        "core"
+      ],
+      "skills": [
+        "accessibility-audit",
+        "brainstorm",
+        "competitive-analysis",
+        "copywriting",
+        "data-analysis",
+        "metrics-design",
+        "user-research"
+      ]
+    },
+    "full": {
+      "description": "启用仓库中的全部 AOS Skill，适合能力探索和维护。",
+      "include_all": true
+    }
+  }
+}

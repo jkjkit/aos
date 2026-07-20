@@ -1,0 +1,952 @@
+{
+  "version": 1,
+  "description": "AOS Skill 与 Workflow 匹配回归语料。每条用例只表达一个主要交付物，多阶段请求使用 Workflow。",
+  "minimum_cases_per_routed_skill": 2,
+  "cases": [
+    {
+      "id": "grill-01",
+      "input": "先别给我方案，连续追问这个会员体系想法的前提，看看我漏掉了什么。",
+      "expected": {
+        "kind": "skill",
+        "name": "grill"
+      },
+      "confusable_with": [
+        "requirement",
+        "brainstorm"
+      ],
+      "reason": "用户只要求追问和暴露盲点，不要求正式需求或方案。"
+    },
+    {
+      "id": "grill-02",
+      "input": "挑战一下我做企业知识库的设想，重点找出未经验证的假设。",
+      "expected": {
+        "kind": "skill",
+        "name": "grill"
+      },
+      "confusable_with": [
+        "requirement",
+        "research"
+      ],
+      "reason": "交付物是质询和假设清单。"
+    },
+    {
+      "id": "requirement-01",
+      "input": "把这个模糊的优惠券想法整理成用户故事、业务规则和验收标准。",
+      "expected": {
+        "kind": "skill",
+        "name": "requirement"
+      },
+      "confusable_with": [
+        "grill",
+        "design",
+        "coding"
+      ],
+      "reason": "需要结构化需求规格，而不是技术方案或代码。"
+    },
+    {
+      "id": "requirement-02",
+      "input": "定义退款功能的范围、角色权限、异常规则和可验收条件。",
+      "expected": {
+        "kind": "skill",
+        "name": "requirement"
+      },
+      "confusable_with": [
+        "design",
+        "task"
+      ],
+      "reason": "最终交付物是需求边界和验收标准。"
+    },
+    {
+      "id": "design-01",
+      "input": "设计多租户权限系统的服务边界、组件关系和关键调用链。",
+      "expected": {
+        "kind": "skill",
+        "name": "design"
+      },
+      "confusable_with": [
+        "design-interface",
+        "api-design",
+        "coding"
+      ],
+      "reason": "要求的是系统架构和组件边界。"
+    },
+    {
+      "id": "design-02",
+      "input": "给订单系统做模块拆分，说明技术选型、数据流和故障隔离策略。",
+      "expected": {
+        "kind": "skill",
+        "name": "design"
+      },
+      "confusable_with": [
+        "database",
+        "coding",
+        "roadmap"
+      ],
+      "reason": "交付物是可评审的技术方案。"
+    },
+    {
+      "id": "design-interface-01",
+      "input": "设计后台登录页的布局、表单交互、错误状态和视觉规范。",
+      "expected": {
+        "kind": "skill",
+        "name": "design-interface"
+      },
+      "confusable_with": [
+        "design",
+        "coding"
+      ],
+      "reason": "需要页面级交互与视觉方案。"
+    },
+    {
+      "id": "design-interface-02",
+      "input": "给移动端结算页出一份交互流程、信息层级和组件状态说明。",
+      "expected": {
+        "kind": "skill",
+        "name": "design-interface"
+      },
+      "confusable_with": [
+        "design",
+        "requirement"
+      ],
+      "reason": "交付物是界面交互规范，不是系统架构。"
+    },
+    {
+      "id": "api-design-01",
+      "input": "定义创建订单接口的路径、请求字段、响应结构、错误码和鉴权方式。",
+      "expected": {
+        "kind": "skill",
+        "name": "api-design"
+      },
+      "confusable_with": [
+        "design",
+        "coding",
+        "api-integration"
+      ],
+      "reason": "用户要求的是 API 契约。"
+    },
+    {
+      "id": "api-design-02",
+      "input": "设计 webhook API 的签名校验、重试语义、幂等规则和版本策略。",
+      "expected": {
+        "kind": "skill",
+        "name": "api-design"
+      },
+      "confusable_with": [
+        "design",
+        "coding"
+      ],
+      "reason": "需要接口行为和版本契约，而不是调用实现。"
+    },
+    {
+      "id": "database-01",
+      "input": "给评论功能设计表结构、外键、Migration 和常用查询索引。",
+      "expected": {
+        "kind": "skill",
+        "name": "database"
+      },
+      "confusable_with": [
+        "design",
+        "coding"
+      ],
+      "reason": "交付物集中在数据模型与迁移方案。"
+    },
+    {
+      "id": "database-02",
+      "input": "设计千万级订单按商户和时间查询的索引方案，并说明查询改写方式。",
+      "expected": {
+        "kind": "skill",
+        "name": "database"
+      },
+      "confusable_with": [
+        "design",
+        "performance"
+      ],
+      "reason": "主要结果是索引和查询方案。"
+    },
+    {
+      "id": "coding-01",
+      "input": "登录页设计已经确认，把它实现到现有 React 项目并补最小测试。",
+      "expected": {
+        "kind": "skill",
+        "name": "coding"
+      },
+      "confusable_with": [
+        "design-interface",
+        "testing",
+        "design"
+      ],
+      "reason": "明确要求修改实际源文件。"
+    },
+    {
+      "id": "coding-02",
+      "input": "按现有 API 契约新增订单创建端点，修改代码并运行自检。",
+      "expected": {
+        "kind": "skill",
+        "name": "coding"
+      },
+      "confusable_with": [
+        "api-design",
+        "design",
+        "review"
+      ],
+      "reason": "契约已存在，当前交付物是实现代码。"
+    },
+    {
+      "id": "task-01",
+      "input": "技术方案已经定了，把它拆成可估算、带依赖关系的开发任务。",
+      "expected": {
+        "kind": "skill",
+        "name": "task"
+      },
+      "confusable_with": [
+        "roadmap",
+        "requirement"
+      ],
+      "reason": "需要近期可执行任务，而不是重新设计方案。"
+    },
+    {
+      "id": "task-02",
+      "input": "把这份数据库迁移方案拆成负责人、工期、前置依赖和验收项。",
+      "expected": {
+        "kind": "skill",
+        "name": "task"
+      },
+      "confusable_with": [
+        "roadmap",
+        "database"
+      ],
+      "reason": "方案已确定，当前只需要执行分解。"
+    },
+    {
+      "id": "roadmap-01",
+      "input": "制定未来两个季度的产品路线图，列出阶段目标、里程碑和依赖。",
+      "expected": {
+        "kind": "skill",
+        "name": "roadmap"
+      },
+      "confusable_with": [
+        "task",
+        "requirement"
+      ],
+      "reason": "交付物是中长期规划。"
+    },
+    {
+      "id": "roadmap-02",
+      "input": "为 AOS 做一份半年技术路线图，说明每阶段取舍和进入条件。",
+      "expected": {
+        "kind": "skill",
+        "name": "roadmap"
+      },
+      "confusable_with": [
+        "task",
+        "design"
+      ],
+      "reason": "要求跨阶段的长期方向和里程碑。"
+    },
+    {
+      "id": "research-01",
+      "input": "比较 Kafka、RabbitMQ 和 NATS，基于可靠性与运维成本推荐一个。",
+      "expected": {
+        "kind": "skill",
+        "name": "research"
+      },
+      "confusable_with": [
+        "competitive-analysis",
+        "design"
+      ],
+      "reason": "需要外部证据支持的技术选型研究。"
+    },
+    {
+      "id": "research-02",
+      "input": "查证 passkey 在企业内部系统中的兼容性限制，并给出采用建议。",
+      "expected": {
+        "kind": "skill",
+        "name": "research"
+      },
+      "confusable_with": [
+        "summary",
+        "user-research"
+      ],
+      "reason": "需要查证未知事实并形成结论。"
+    },
+    {
+      "id": "competitive-analysis-01",
+      "input": "对比 Notion、Confluence 和 Slite 的定位、定价、核心能力与差异化。",
+      "expected": {
+        "kind": "skill",
+        "name": "competitive-analysis"
+      },
+      "confusable_with": [
+        "research",
+        "data-analysis"
+      ],
+      "reason": "交付物是结构化竞品矩阵和差异化判断。"
+    },
+    {
+      "id": "competitive-analysis-02",
+      "input": "分析国内四款客服 SaaS 的功能覆盖、目标客户和市场空位。",
+      "expected": {
+        "kind": "skill",
+        "name": "competitive-analysis"
+      },
+      "confusable_with": [
+        "research",
+        "user-research"
+      ],
+      "reason": "研究对象是市场竞品，而不是技术方案或真实用户。"
+    },
+    {
+      "id": "user-research-01",
+      "input": "为首次使用报销系统的员工设计访谈提纲和可用性测试任务。",
+      "expected": {
+        "kind": "skill",
+        "name": "user-research"
+      },
+      "confusable_with": [
+        "research",
+        "data-analysis"
+      ],
+      "reason": "需要面向真实用户的研究方案。"
+    },
+    {
+      "id": "user-research-02",
+      "input": "整理这批用户访谈记录，提炼 Jobs to be Done、痛点和行为模式。",
+      "expected": {
+        "kind": "skill",
+        "name": "user-research"
+      },
+      "confusable_with": [
+        "summary",
+        "competitive-analysis"
+      ],
+      "reason": "目标是用户洞察，不只是压缩访谈原文。"
+    },
+    {
+      "id": "data-analysis-01",
+      "input": "分析这份近十二个月留存数据，解释下降趋势并提出可验证的行动。",
+      "expected": {
+        "kind": "skill",
+        "name": "data-analysis"
+      },
+      "confusable_with": [
+        "summary",
+        "cohort-analysis"
+      ],
+      "reason": "用户提供了数据并要求解释和行动建议。"
+    },
+    {
+      "id": "data-analysis-02",
+      "input": "检查销售 CSV 中各地区转化率差异，找出异常值和可能原因。",
+      "expected": {
+        "kind": "skill",
+        "name": "data-analysis"
+      },
+      "confusable_with": [
+        "research",
+        "summary"
+      ],
+      "reason": "主要工作是分析已有业务数据。"
+    },
+    {
+      "id": "summary-01",
+      "input": "把这份三十页架构文档压缩成五个要点，不要新增评价。",
+      "expected": {
+        "kind": "skill",
+        "name": "summary"
+      },
+      "confusable_with": [
+        "research",
+        "document"
+      ],
+      "reason": "只需压缩已有材料，不需要新增判断。"
+    },
+    {
+      "id": "summary-02",
+      "input": "将这段长对话整理成简短摘要，保留结论和未决问题。",
+      "expected": {
+        "kind": "skill",
+        "name": "summary"
+      },
+      "confusable_with": [
+        "meeting-notes",
+        "user-research"
+      ],
+      "reason": "交付物是通用摘要，而不是正式会议行动项。"
+    },
+    {
+      "id": "testing-01",
+      "input": "为支付模块设计正常、边界和异常路径的测试计划与用例。",
+      "expected": {
+        "kind": "skill",
+        "name": "testing"
+      },
+      "confusable_with": [
+        "review",
+        "debug"
+      ],
+      "reason": "需要测试策略和用例，而不是审查已有 diff。"
+    },
+    {
+      "id": "testing-02",
+      "input": "评估用户权限模块的覆盖率缺口，并列出应该补的回归测试。",
+      "expected": {
+        "kind": "skill",
+        "name": "testing"
+      },
+      "confusable_with": [
+        "review",
+        "security"
+      ],
+      "reason": "最终结果是覆盖方案和测试用例。"
+    },
+    {
+      "id": "review-01",
+      "input": "审查这个 PR 是否符合原始需求、编码规范，并指出具体缺陷。",
+      "expected": {
+        "kind": "skill",
+        "name": "review"
+      },
+      "confusable_with": [
+        "testing",
+        "coding",
+        "debug"
+      ],
+      "reason": "已有代码改动，用户只要求审查报告。"
+    },
+    {
+      "id": "review-02",
+      "input": "看一下这组 diff 有没有回归风险、错误处理遗漏和不必要的复杂度。",
+      "expected": {
+        "kind": "skill",
+        "name": "review"
+      },
+      "confusable_with": [
+        "debug",
+        "security"
+      ],
+      "reason": "任务对象是已有 diff，当前不要求直接修改。"
+    },
+    {
+      "id": "debug-01",
+      "input": "接口偶发返回 500，帮我建立复现步骤并定位根因。",
+      "expected": {
+        "kind": "skill",
+        "name": "debug"
+      },
+      "confusable_with": [
+        "review",
+        "testing",
+        "performance"
+      ],
+      "reason": "已经出现具体故障，需要复现和根因分析。"
+    },
+    {
+      "id": "debug-02",
+      "input": "升级依赖后登录流程有时卡住，请分析日志和调用链找到问题来源。",
+      "expected": {
+        "kind": "skill",
+        "name": "debug"
+      },
+      "confusable_with": [
+        "review",
+        "dependency-management"
+      ],
+      "reason": "存在运行时异常，核心目标是定位原因。"
+    },
+    {
+      "id": "security-01",
+      "input": "审查文件上传接口的攻击面、权限校验、路径穿越和恶意文件风险。",
+      "expected": {
+        "kind": "skill",
+        "name": "security"
+      },
+      "confusable_with": [
+        "review",
+        "testing"
+      ],
+      "reason": "用户明确要求安全攻击面审查。"
+    },
+    {
+      "id": "security-02",
+      "input": "检查这个认证方案是否存在会话固定、越权和敏感数据泄露问题。",
+      "expected": {
+        "kind": "skill",
+        "name": "security"
+      },
+      "confusable_with": [
+        "review",
+        "design"
+      ],
+      "reason": "交付物是安全风险和修复建议。"
+    },
+    {
+      "id": "performance-01",
+      "input": "接口延迟从 100ms 升到 800ms，测量各阶段耗时并定位瓶颈。",
+      "expected": {
+        "kind": "skill",
+        "name": "performance"
+      },
+      "confusable_with": [
+        "debug",
+        "review"
+      ],
+      "reason": "存在明确性能基线和回退，需要测量瓶颈。"
+    },
+    {
+      "id": "performance-02",
+      "input": "分析首页 LCP 超过四秒的原因，提出可验证的优化方案和对比指标。",
+      "expected": {
+        "kind": "skill",
+        "name": "performance"
+      },
+      "confusable_with": [
+        "debug",
+        "testing"
+      ],
+      "reason": "任务围绕性能指标、测量和优化验证。"
+    },
+    {
+      "id": "document-01",
+      "input": "为这个 Python 库补一份包含安装、快速开始和配置说明的 README。",
+      "expected": {
+        "kind": "skill",
+        "name": "document"
+      },
+      "confusable_with": [
+        "changelog",
+        "copywriting"
+      ],
+      "reason": "需要稳定的项目使用文档。"
+    },
+    {
+      "id": "document-02",
+      "input": "根据现有接口契约编写调用方使用指南，包括参数、返回和错误说明。",
+      "expected": {
+        "kind": "skill",
+        "name": "document"
+      },
+      "confusable_with": [
+        "api-design",
+        "faq-generation"
+      ],
+      "reason": "接口契约已经存在，当前要面向调用方的文档。"
+    },
+    {
+      "id": "changelog-01",
+      "input": "把本次版本的 commits 整理成用户能看懂的更新日志。",
+      "expected": {
+        "kind": "skill",
+        "name": "changelog"
+      },
+      "confusable_with": [
+        "document",
+        "git"
+      ],
+      "reason": "需要描述版本之间的用户可见变化。"
+    },
+    {
+      "id": "changelog-02",
+      "input": "根据这些代码变更更新 Unreleased，按 Added、Changed 和 Fixed 分类。",
+      "expected": {
+        "kind": "skill",
+        "name": "changelog"
+      },
+      "confusable_with": [
+        "document",
+        "summary"
+      ],
+      "reason": "目标是维护版本变更日志。"
+    },
+    {
+      "id": "meeting-notes-01",
+      "input": "从这份会议录音稿中提取决策、行动项、负责人和截止时间。",
+      "expected": {
+        "kind": "skill",
+        "name": "meeting-notes"
+      },
+      "confusable_with": [
+        "summary",
+        "document"
+      ],
+      "reason": "需要会议特有的决策和行动项结构。"
+    },
+    {
+      "id": "meeting-notes-02",
+      "input": "整理今天的项目评审记录，区分已决定事项、风险和待确认问题。",
+      "expected": {
+        "kind": "skill",
+        "name": "meeting-notes"
+      },
+      "confusable_with": [
+        "summary",
+        "document",
+        "task"
+      ],
+      "reason": "输入是会议材料，输出需要会议纪要结构。"
+    },
+    {
+      "id": "faq-generation-01",
+      "input": "从最近三个月的客服工单中生成可检索的 FAQ 问答知识库。",
+      "expected": {
+        "kind": "skill",
+        "name": "faq-generation"
+      },
+      "confusable_with": [
+        "document",
+        "cs-response"
+      ],
+      "reason": "需要从历史材料沉淀问答知识库。"
+    },
+    {
+      "id": "faq-generation-02",
+      "input": "把产品帮助文档整理成去重后的常见问题、标准答案和标签。",
+      "expected": {
+        "kind": "skill",
+        "name": "faq-generation"
+      },
+      "confusable_with": [
+        "document",
+        "summary"
+      ],
+      "reason": "最终交付物是结构化 FAQ。"
+    },
+    {
+      "id": "copywriting-01",
+      "input": "为新品发布写一封有明确行动号召的营销邮件。",
+      "expected": {
+        "kind": "skill",
+        "name": "copywriting"
+      },
+      "confusable_with": [
+        "document",
+        "cs-response"
+      ],
+      "reason": "需要面向转化的营销表达。"
+    },
+    {
+      "id": "copywriting-02",
+      "input": "把这个产品卖点改写成三条适合社交媒体发布的短文案。",
+      "expected": {
+        "kind": "skill",
+        "name": "copywriting"
+      },
+      "confusable_with": [
+        "document",
+        "summary"
+      ],
+      "reason": "交付物是传播文案，而不是事实文档。"
+    },
+    {
+      "id": "codebase-exploration-01",
+      "input": "我刚接手这个仓库，先梳理目录、运行入口、核心模块和关键调用链，告诉我应该从哪些文件读起。",
+      "expected": {
+        "kind": "skill",
+        "name": "codebase-exploration"
+      },
+      "confusable_with": [
+        "change-impact-analysis",
+        "design",
+        "research"
+      ],
+      "reason": "交付物是现有代码库的导航地图，不是变更影响或新方案。"
+    },
+    {
+      "id": "codebase-exploration-02",
+      "input": "先不要改代码，定位订单创建请求从路由到数据库的完整路径，并列出相关文件和项目约定。",
+      "expected": {
+        "kind": "skill",
+        "name": "codebase-exploration"
+      },
+      "confusable_with": [
+        "change-impact-analysis",
+        "coding",
+        "design"
+      ],
+      "reason": "用户要追踪现有实现和调用链，未提出拟议变更。"
+    },
+    {
+      "id": "change-impact-analysis-01",
+      "input": "我们准备把 User.id 从整数改为 UUID，改之前列出所有受影响的调用方、数据库、接口、测试和发布步骤。",
+      "expected": {
+        "kind": "skill",
+        "name": "change-impact-analysis"
+      },
+      "confusable_with": [
+        "codebase-exploration",
+        "design",
+        "testing"
+      ],
+      "reason": "需要在修改前形成跨代码、契约、数据和交付环节的影响矩阵。"
+    },
+    {
+      "id": "change-impact-analysis-02",
+      "input": "评估移除旧 webhook 事件字段的爆炸半径，区分确定影响、可能影响和需要验证的未知项。",
+      "expected": {
+        "kind": "skill",
+        "name": "change-impact-analysis"
+      },
+      "confusable_with": [
+        "codebase-exploration",
+        "risk-analysis",
+        "review"
+      ],
+      "reason": "目标是分析一个拟议契约变更的直接与间接影响。"
+    },
+    {
+      "id": "verification-01",
+      "input": "实现已经完成，请实际运行类型检查、lint、构建和测试，按证据判断是否可以交付。",
+      "expected": {
+        "kind": "skill",
+        "name": "verification"
+      },
+      "confusable_with": [
+        "testing",
+        "review",
+        "coding"
+      ],
+      "reason": "用户要求执行最终质量门禁并给出基于运行结果的交付结论。"
+    },
+    {
+      "id": "verification-02",
+      "input": "根据这三条验收标准核对改动，记录每条命令的结果，未执行的项目不要算通过。",
+      "expected": {
+        "kind": "skill",
+        "name": "verification"
+      },
+      "confusable_with": [
+        "testing",
+        "review",
+        "debug"
+      ],
+      "reason": "交付物是验收条件与执行证据的映射，而不是测试设计或代码审查。"
+    },
+    {
+      "id": "skill-authoring-01",
+      "input": "为 AOS 新增一个日志脱敏能力，写 SKILL.md，并同步岗位标签、路由规则和匹配回归用例。",
+      "expected": {
+        "kind": "skill",
+        "name": "skill-authoring"
+      },
+      "confusable_with": [
+        "document",
+        "prompt-writing",
+        "coding"
+      ],
+      "reason": "用户要创建完整的 AOS Skill 定义及其匹配治理数据。"
+    },
+    {
+      "id": "skill-authoring-02",
+      "input": "调整现有测试能力的触发边界，避免它和交付验收混淆，更新 description、路由数据和回归语料。",
+      "expected": {
+        "kind": "skill",
+        "name": "skill-authoring"
+      },
+      "confusable_with": [
+        "document",
+        "verification",
+        "prompt-writing"
+      ],
+      "reason": "任务对象是 Skill 本身及其路由行为，不是普通文档或测试执行。"
+    },
+    {
+      "id": "prompt-writing-01",
+      "input": "为分类任务写一个包含输入格式、输出 Schema 和 few-shot 示例的 system prompt。",
+      "expected": {
+        "kind": "skill",
+        "name": "prompt-writing"
+      },
+      "confusable_with": [
+        "context-engineering",
+        "llm-evaluation"
+      ],
+      "reason": "交付物是可直接使用的 Prompt 正文，不是运行时上下文契约或完整评估体系。"
+    },
+    {
+      "id": "prompt-writing-02",
+      "input": "编写一个用于判断回答是否有引用依据的 evaluator prompt，只要 Prompt 正文。",
+      "expected": {
+        "kind": "skill",
+        "name": "prompt-writing"
+      },
+      "confusable_with": [
+        "llm-evaluation",
+        "context-engineering"
+      ],
+      "reason": "用户明确只要评估 Prompt 文案，没有要求数据集、指标或评估运行。"
+    },
+    {
+      "id": "context-engineering-01",
+      "input": "为这个 Agent 设计系统指令、历史消息、检索文档和工具结果的 Token 分配与淘汰规则。",
+      "expected": {
+        "kind": "skill",
+        "name": "context-engineering"
+      },
+      "confusable_with": [
+        "prompt-writing",
+        "llm-evaluation"
+      ],
+      "reason": "交付物是运行时上下文来源、预算和淘汰契约。"
+    },
+    {
+      "id": "context-engineering-02",
+      "input": "长对话中旧记忆经常覆盖新事实，请设计上下文信任级别、失效和压缩策略。",
+      "expected": {
+        "kind": "skill",
+        "name": "context-engineering"
+      },
+      "confusable_with": [
+        "prompt-writing",
+        "llm-evaluation"
+      ],
+      "reason": "问题集中在记忆生命周期、冲突优先级和压缩，而不是 Prompt 文案或质量评分。"
+    },
+    {
+      "id": "llm-evaluation-01",
+      "input": "为客服 RAG 建立离线评估集、评分标准和发布门禁，比较当前版本与新检索策略。",
+      "expected": {
+        "kind": "skill",
+        "name": "llm-evaluation"
+      },
+      "confusable_with": [
+        "prompt-writing",
+        "context-engineering"
+      ],
+      "reason": "需要完整的离线评估契约、基线比较和质量门禁。"
+    },
+    {
+      "id": "llm-evaluation-02",
+      "input": "校准一个模型评审器，检查它与人工金标的一致性，并分析主要失败模式。",
+      "expected": {
+        "kind": "skill",
+        "name": "llm-evaluation"
+      },
+      "confusable_with": [
+        "prompt-writing",
+        "context-engineering"
+      ],
+      "reason": "交付物是评估器校准和失败分析，不只是编写 evaluator prompt。"
+    },
+    {
+      "id": "accessibility-audit-01",
+      "input": "审计结算流程的键盘操作、焦点顺序、屏幕阅读器反馈和缩放重排问题。",
+      "expected": {
+        "kind": "skill",
+        "name": "accessibility-audit"
+      },
+      "confusable_with": [
+        "review",
+        "testing"
+      ],
+      "reason": "要求的是面向辅助技术与关键旅程的专项可访问性审计。"
+    },
+    {
+      "id": "accessibility-audit-02",
+      "input": "检查组件库的语义、对比度、表单错误和动态内容，并给出可复测的问题清单。",
+      "expected": {
+        "kind": "skill",
+        "name": "accessibility-audit"
+      },
+      "confusable_with": [
+        "review",
+        "testing"
+      ],
+      "reason": "交付物是带证据和复测方法的可访问性发现，而不是普通代码审查或功能测试。"
+    },
+    {
+      "id": "privacy-review-01",
+      "input": "审查用户画像功能采集了哪些个人信息、为什么需要、保留多久以及如何删除。",
+      "expected": {
+        "kind": "skill",
+        "name": "privacy-review"
+      },
+      "confusable_with": [
+        "security",
+        "review"
+      ],
+      "reason": "主要判断个人信息处理目的、最小化、保留和删除路径。"
+    },
+    {
+      "id": "privacy-review-02",
+      "input": "检查客服对话发送给第三方模型时的数据最小化、日志、退出和删除路径。",
+      "expected": {
+        "kind": "skill",
+        "name": "privacy-review"
+      },
+      "confusable_with": [
+        "security",
+        "review"
+      ],
+      "reason": "交付物是第三方 AI 数据使用与生命周期的隐私整改清单。"
+    },
+    {
+      "id": "workflow-new-feature-01",
+      "input": "从需求梳理开始，把团队邀请功能完整做到设计、实现、测试、审查和文档更新。",
+      "expected": {
+        "kind": "workflow",
+        "name": "new-feature"
+      },
+      "confusable_with": [
+        "requirement",
+        "design",
+        "coding"
+      ],
+      "reason": "请求明确横跨新功能开发的多个阶段。"
+    },
+    {
+      "id": "workflow-bug-fix-01",
+      "input": "把线上支付失败问题从复现、根因分析、修复、审查到回归验证完整处理掉。",
+      "expected": {
+        "kind": "workflow",
+        "name": "bug-fix"
+      },
+      "confusable_with": [
+        "debug",
+        "coding",
+        "testing"
+      ],
+      "reason": "需要完整 Bug 修复链路，而不是单独定位或编码。"
+    },
+    {
+      "id": "workflow-code-review-01",
+      "input": "对这个 PR 走完整的合并前流程：自动检查、人工审查、修改确认、最终审查和合并验证。",
+      "expected": {
+        "kind": "workflow",
+        "name": "code-review"
+      },
+      "confusable_with": [
+        "review",
+        "testing",
+        "git"
+      ],
+      "reason": "请求的是多步骤代码审查流程。"
+    },
+    {
+      "id": "workflow-deployment-01",
+      "input": "把当前版本部署到生产，完成部署前检查、构建、发布、健康检查、烟测、监控和回滚准备。",
+      "expected": {
+        "kind": "workflow",
+        "name": "deployment"
+      },
+      "confusable_with": [
+        "devops",
+        "testing",
+        "observability"
+      ],
+      "reason": "任务覆盖完整部署生命周期。"
+    },
+    {
+      "id": "workflow-release-01",
+      "input": "发布 1.2.0：升级版本号、整理变更日志、跑验证、创建发布、部署并监控反馈。",
+      "expected": {
+        "kind": "workflow",
+        "name": "release"
+      },
+      "confusable_with": [
+        "changelog",
+        "git",
+        "deployment"
+      ],
+      "reason": "请求包含完整版本发布流程。"
+    }
+  ]
+}
